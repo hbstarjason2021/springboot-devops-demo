@@ -2,12 +2,12 @@
 name: chart-deploy-ci
 
 on:
-  pull_request:
-  push:
-    branches:
-      - master
-    tags:
-      - 'v*'
+  #pull_request:
+  #push:
+  #  branches:
+  #    - master
+  #  tags:
+  #    - 'v*'
 
 env:
   SCRIPTS_DIR: ./test/scripts
