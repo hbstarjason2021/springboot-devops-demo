@@ -1,11 +1,11 @@
 name: Units & Integrations & Release
 
 on: 
-  push:
+  #push:
   #schedule:
     # - cron: '0 21 * * *'
-    branches:
-     - master
+    #branches:
+     #- master
      #- dev
   #pull_request:
     #branches:
