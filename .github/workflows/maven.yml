@@ -76,14 +76,14 @@ jobs:
           #name: springboot-devops-demo-jar-${{matrix.os.short}}-${{github.sha}}
           path: staging
 
-    - name: Create gitstats
-      run: sudo apt-get update && sudo apt-get install gitstats  gnuplot  -y &&  gitstats . ./gitstats-springboot-devops-demo
+    #- name: Create gitstats
+    #  run: sudo apt-get update && sudo apt-get install gitstats  gnuplot  -y &&  gitstats . ./gitstats-springboot-devops-demo
 
-    - name: Upload gitstats
-      uses: actions/upload-artifact@v1
-      with: 
-          name: gitstats-springboot-devops-demo-${{github.sha}}
-          path: ./gitstats-springboot-devops-demo
+    #- name: Upload gitstats
+    #  uses: actions/upload-artifact@v1
+    #  with: 
+    #      name: gitstats-springboot-devops-demo-${{github.sha}}
+    #      path: ./gitstats-springboot-devops-demo
 
     #- name: Lint Dockerfile
     #  run: docker run --rm -i hadolint/hadolint < Dockerfile
