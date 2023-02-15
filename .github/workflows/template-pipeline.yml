@@ -142,6 +142,7 @@ jobs:
       #- job-ubuntu
       #- job1-ubuntu
       #- job2-ubuntu2-python
+      - job-darwin
       - job4-windows-nodejs
       - job5-darwin
     steps:
