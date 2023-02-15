@@ -69,6 +69,9 @@ jobs:
 
   job4-windows:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        node: [ 14, 16, 18 ]
     permissions: write-all
     needs:
       - job1-ubuntu
@@ -80,7 +83,7 @@ jobs:
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ matrix.node }}
           #cache: 'yarn'
           #cache-dependency-path: 'ui/yarn.lock'
       - name: node info 
