@@ -77,7 +77,7 @@ jobs:
     runs-on: macos-latest
     permissions: write-all
     needs:
-      - job-ubuntu
+      #- job-ubuntu
       - job1-ubuntu
       - job2-ubuntu2
     steps:
