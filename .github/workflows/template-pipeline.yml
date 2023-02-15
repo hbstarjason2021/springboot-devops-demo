@@ -1,0 +1,76 @@
+name: template-pipeline
+
+on:
+  workflow_dispatch:
+  #push:
+    # Sequence of patterns matched against refs/tags
+    #tags:
+    #  - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  job1-ubuntu:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: step1-ubuntu
+        #uses: actions/checkout@v3
+        run: |
+          uname -a 
+      - name: step2-ubuntu
+        run: |
+          cat /etc/os-release
+          echo "==== this is job1-ubuntu"
+        
+  job2-ubuntu2:
+    runs-on: ubuntu-latest
+    needs: job1-ubuntu
+    steps:
+      - name: step1-ubuntu
+        #uses: actions/checkout@v3
+        run: |
+          uname -a 
+      - name: step2-ubuntu
+        run: |
+          cat /etc/os-release
+          echo "==== this is job2-ubuntu"
+
+  job3-windows:
+    runs-on: ubuntu-latest
+    needs: job1-ubuntu
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+      - name: Install golang
+        uses: actions/setup-go@v3
+        
+  job-darwin:
+    runs-on: macos-latest
+    permissions: write-all
+    needs:
+      - job1-ubuntu
+      - job2-ubuntu
+    steps:
+      - name: step1-macos
+        #uses: actions/checkout@v3
+         run: |
+          uname -a 
+      - name: step2-macos
+        run: |
+          cat /etc/os-release       
+
+  job4-windows:
+    runs-on: windows-latest
+    permissions: write-all
+    needs:
+      - job1-ubuntu
+      - job3-windows
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+          cache-dependency-path: 'ui/yarn.lock'
