@@ -44,7 +44,7 @@ jobs:
           
           curl ip.sb
  
-  job2-ubuntu2:
+  job2-ubuntu2-python:
     runs-on: ubuntu-latest
     needs: job1-ubuntu
     steps:
@@ -59,7 +59,7 @@ jobs:
         run: |
          python3 -verison
 
-  job3-windows:
+  job3-windows-go:
     runs-on: ubuntu-latest
     needs: job1-ubuntu
     steps:
@@ -79,7 +79,7 @@ jobs:
     needs:
       #- job-ubuntu
       - job1-ubuntu
-      - job2-ubuntu2
+      - job2-ubuntu2-python
     steps:
       - name: step1-macos
         #uses: actions/checkout@v3
@@ -92,7 +92,26 @@ jobs:
           # top -l 1 | head -n 10 | grep PhysMem
           curl ip.sb
 
-  job4-windows:
+  job5-darwin:
+    runs-on: macos-latest
+    permissions: write-all
+    needs:
+      - job-ubuntu
+      #- job1-ubuntu
+      #- job2-ubuntu2-python
+    steps:
+      - name: step1-macos
+        #uses: actions/checkout@v3
+        run: |
+          uname -a 
+      - name: step2-macos
+        run: |
+          sw_vers
+          top -l 1 | head -n 10 
+          # top -l 1 | head -n 10 | grep PhysMem
+          curl ip.sb
+
+  job4-windows-nodejs:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -100,7 +119,7 @@ jobs:
     permissions: write-all
     needs:
       - job1-ubuntu
-      - job3-windows
+      - job3-windows-go
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
