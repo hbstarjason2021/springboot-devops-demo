@@ -56,7 +56,7 @@ jobs:
           uname -a 
       - name: step2-macos
         run: |
-          cat /etc/os-release       
+          sw_vers      
 
   job4-windows:
     runs-on: windows-latest
@@ -74,3 +74,6 @@ jobs:
           node-version: 16
           cache: 'yarn'
           cache-dependency-path: 'ui/yarn.lock'
+      - name: node info 
+        run: |
+          node -v 
