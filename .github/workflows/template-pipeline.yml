@@ -48,11 +48,11 @@ jobs:
     permissions: write-all
     needs:
       - job1-ubuntu
-      - job2-ubuntu
+      - job2-ubuntu2
     steps:
       - name: step1-macos
         #uses: actions/checkout@v3
-         run: |
+        run: |
           uname -a 
       - name: step2-macos
         run: |
