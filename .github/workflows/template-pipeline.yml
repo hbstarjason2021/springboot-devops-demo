@@ -41,7 +41,7 @@ jobs:
           free -m -h
           echo "===== df ======="
           df -h
-          
+          echo "===== public ip ======="
           curl ip.sb
  
   job2-ubuntu2-python:
@@ -90,6 +90,7 @@ jobs:
           sw_vers
           top -l 1 | head -n 10 
           # top -l 1 | head -n 10 | grep PhysMem
+          echo "===== public ip ======="
           curl ip.sb
 
   job5-darwin:
@@ -109,6 +110,7 @@ jobs:
           sw_vers
           top -l 1 | head -n 10 
           # top -l 1 | head -n 10 | grep PhysMem
+          echo "===== public ip ======="
           curl ip.sb
 
   job4-windows-nodejs:
@@ -133,3 +135,24 @@ jobs:
       - name: node info 
         run: |
           node -v 
+  job6-darwin:
+    runs-on: macos-latest
+    permissions: write-all
+    needs:
+      #- job-ubuntu
+      #- job1-ubuntu
+      #- job2-ubuntu2-python
+      - job4-windows-nodejs
+      - job5-darwin
+    steps:
+      - name: step1-macos
+        #uses: actions/checkout@v3
+        run: |
+          uname -a 
+      - name: step2-macos
+        run: |
+          sw_vers
+          top -l 1 | head -n 10 
+          # top -l 1 | head -n 10 | grep PhysMem
+          echo "===== public ip ======="
+          curl ip.sb
