@@ -54,7 +54,7 @@ jobs:
         run: |
           sudo apt update -y 
           sudo apt-get install --yes postgresql-client
-          psql -h localhost -d postgres_db -U postgres_user -c 'show databases;'
+          psql -h localhost -d postgres_db -U postgres_user -c '\l;'
         env:
           PGPASSWORD: postgres_password
          
