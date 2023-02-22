@@ -113,7 +113,7 @@ jobs:
           #cache: 'pip'
       - name: python info
         run: |
-         python3 -verison
+         python3 --verison
 
   job3-windows-go:
     runs-on: ubuntu-latest
