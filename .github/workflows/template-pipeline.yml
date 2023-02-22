@@ -52,6 +52,7 @@ jobs:
       #    POSTGRES_PORT: 5432
       - name: Test Connect PostgreSQL
         run: |
+          apt update -y 
           apt-get install --yes postgresql-client
           psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;
         env:
