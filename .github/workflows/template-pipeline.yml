@@ -11,6 +11,22 @@ jobs:
   job1-ubuntu:
     runs-on: ubuntu-latest
     permissions: write-all
+    
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 123456
+          POSTGRES_DB: simple_demo
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
     steps:
       - name: step1-ubuntu
         #uses: actions/checkout@v3
@@ -20,6 +36,8 @@ jobs:
         run: |
           cat /etc/os-release
           echo "==== this is job1-ubuntu"
+          netstat -pltn 
+          
  
   job-ubuntu:
      runs-on: ubuntu-latest
